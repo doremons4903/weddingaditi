@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wedding Preview Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&family=Rozha+One&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background-color: #4D0011;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card-canvas {
+      position: relative;
+      width: 1200px;
+      height: 630px;
+      background: radial-gradient(circle at 50% 30%, #8c1c36 0%, #60081d 55%, #42000f 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      text-align: center;
+      color: #F8F1D6;
+    }
+    .mandala-texture {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.08;
+      background-image: radial-gradient(#DBBE9B 1.5px, transparent 1.5px);
+      background-size: 28px 28px;
+    }
+    .gold-outer-border {
+      position: absolute;
+      inset: 18px;
+      border: 3px solid #DBBE9B;
+      border-radius: 6px;
+      pointer-events: none;
+    }
+    .gold-inner-border {
+      position: absolute;
+      inset: 26px;
+      border: 1px solid rgba(219, 190, 155, 0.75);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .corner-ornament {
+      position: absolute;
+      width: 45px;
+      height: 45px;
+      pointer-events: none;
+    }
+    .corner-tl { top: 32px; left: 32px; border-top: 3px solid #DBBE9B; border-left: 3px solid #DBBE9B; }
+    .corner-tr { top: 32px; right: 32px; border-top: 3px solid #DBBE9B; border-right: 3px solid #DBBE9B; }
+    .corner-bl { bottom: 32px; left: 32px; border-bottom: 3px solid #DBBE9B; border-left: 3px solid #DBBE9B; }
+    .corner-br { bottom: 32px; right: 32px; border-bottom: 3px solid #DBBE9B; border-right: 3px solid #DBBE9B; }
+
+    .ganesh-logo {
+      width: 105px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 15px rgba(219, 190, 155, 0.65));
+      margin-bottom: 8px;
+    }
+    .shloka-text {
+      font-family: 'Tiro Devanagari Hindi', serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: #DBBE9B;
+      margin-bottom: 4px;
+    }
+    .shubh-vivah {
+      font-family: 'Rozha One', 'Tiro Devanagari Hindi', serif;
+      font-size: 58px;
+      line-height: 1.1;
+      color: #FFFFFF;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.8), 0 0 15px rgba(219, 190, 155, 0.4);
+      margin-bottom: 12px;
+    }
+    .shubh-vivah::before, .shubh-vivah::after {
+      content: ' ✦ ';
+      color: #DBBE9B;
+      font-size: 28px;
+      vertical-align: middle;
+    }
+    .gold-divider-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      width: 320px;
+      margin: 0 auto 14px;
+    }
+    .gold-divider-line::before, .gold-divider-line::after {
+      content: '';
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, #DBBE9B, transparent);
+    }
+    .divider-heart-icon {
+      color: #DBBE9B;
+      font-size: 16px;
+    }
+    .couple-title {
+      font-family: 'Cinzel', serif;
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: #FFF3E3;
+      text-transform: uppercase;
+      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+      margin-bottom: 12px;
+    }
+    .couple-title span {
+      color: #DBBE9B;
+      font-weight: 700;
+      margin: 0 8px;
+    }
+    .details-date {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #F8F1D6;
+      letter-spacing: 1.5px;
+      margin-bottom: 6px;
+    }
+    .details-venue {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: #DBBE9B;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    .pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 28px;
+      border-radius: 30px;
+      background: rgba(77, 0, 17, 0.95);
+      border: 1.5px solid #DBBE9B;
+      color: #FFF3E3;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="card-canvas">
+    <div class="mandala-texture"></div>
+    <div class="gold-outer-border"></div>
+    <div class="gold-inner-border"></div>
+    <div class="corner-ornament corner-tl"></div>
+    <div class="corner-ornament corner-tr"></div>
+    <div class="corner-ornament corner-bl"></div>
+    <div class="corner-ornament corner-br"></div>
+
+    <img src="ganesh-new.png" class="ganesh-logo" alt="Ganesh Ji" />
+    <div class="shloka-text">॥ श्री गणेशाय नमः ॥</div>
+    <div class="shubh-vivah">शुभ विवाह</div>
+    <div class="gold-divider-line">
+      <span class="divider-heart-icon">&#10084;</span>
+    </div>
+    <h1 class="couple-title">SMRITI <span>&amp;</span> SUKHEN</h1>
+    <div class="details-date">Monday, 30th November 2026 &bull; 7:00 P.M. Onwords</div>
+    <div class="details-venue">AROVI BANQUET HALL &bull; Bandel, Kazidanga, Hooghly</div>
+    <div class="pill-badge">
+      <span>✦ TAP TO OPEN DIGITAL INVITATION ✦</span>
+    </div>
+  </div>
+</body>
+</html>
